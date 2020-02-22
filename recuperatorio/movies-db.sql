@@ -19,6 +19,9 @@
 -- Table structure for table `actor_episode`
 --
 
+DROP DATABASE IF EXISTS movies_db;
+CREATE DATABASE movies_db;
+USE movies_db;
 
 DROP TABLE IF EXISTS `actor_episode`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

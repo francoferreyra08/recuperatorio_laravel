@@ -1,5 +1,7 @@
 <html>
     <head>
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0,minimun-sacale=1.0">
+    <link rel="stylesheet" href="<?php echo asset('css/agregarpeli.css')?>" type="text/css">
         <title>Agregar Pelicula</title>
     </head>
     <body>

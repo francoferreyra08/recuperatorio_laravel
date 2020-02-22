@@ -1,0 +1,17 @@
+body{
+
+    align-items: center;
+    color: #fff;
+    background-image: url("../images/fondo4.jpg");
+    text-align: center;
+    background-size: 135%;
+
+}
+
+
+@media (max-width:768px) {
+  body{
+    background-image: url("../imagenes/fondo4.jpg");
+    background-size: auto;
+  }
+}
