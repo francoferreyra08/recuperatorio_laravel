@@ -6,9 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Genero extends Model
 {
-  protected $table = ('genres');
-//private $primarykey = ('id');
-//private $timesstamps = false;
-protected $guarded=[];
+
+
+    public function movie(){
+      return $this->HasMany(Movie::class,'movies_id','genre_id');
+
+    }
+
+      public function genre(){
+        return $this->BelongsTo(Genre::class,'movies_id');
+    }
+
+
 
 }

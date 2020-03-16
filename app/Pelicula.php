@@ -6,8 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pelicula extends Model
 {
-    protected $table = ('movies');
-    //private $primarykey = ('id');
-    //private $timesstamps = false;
-    protected $guarded=[];
+  public $guarded=[];
+
+
+public function actor(){
+  return $this->BelongsToMany(Actor::class,'actor_movie','movies_id','actor_id');
+}
+
+public function genre(){
+  return $this->BelongsTo(Genre::class,'genre_id');
+}
+
+
+public function actorMovies(){
+  return $this->HasMay(Actor::class,'_movie_id');
+}
+
+
+
 }

@@ -36,62 +36,6 @@ $pe = $result['buscar'];
 
 
 
-  /*function buscarPelicula($id){
-      $pelicula = [
-        1 => "Toy Story",
-        2 => "Buscando a Nemo",
-        3 => "Avatar",
-        4 => "Piratas del Caribe",
-        5 => "Up",
-        6 => "Mary and Max"
-       ];
-       for ($i=1; $i <=6 ; $i++) {
-         if ($i == $id) {
-           return $pelicula[$id];
-         }
-       }
-    }
-
-    function buscarPelicula($id){
-      $pelicula = [
-        1 => "Toy Story",
-        2 => "Buscando a Nemo",
-        3 => "Avatar",
-        4 => "Piratas del Caribe",
-        5 => "Up",
-        6 => "Mary and Max"
-       ];
-       for ($i=1; $i <=7 ; $i++) {
-         if ($i == $id) {
-           return $pelicula[$i];
-           exit;
-         }
-       }
-
-       function buscarPeliculanombre($nombre){
-         $pelicula = [
-           1 => "Toy Story",
-           2 => "Buscando a Nemo",
-           3 => "Avatar",
-           4 => "Piratas del Caribe",
-           5 => "Up",
-           6 => "Mary and Max"
-          ];
-          for ($i=1; $i <=7 ; $i++) {
-            if ($pelicula[$id]== $nombre) {
-            $msj = $nombre;
-          }else{
-            $msj = "no se encontro esta pelicula";
-
-              return $msj;
-
-    }
-  }
-}
-*/
-
-
-
 
 
  public function insertar(Request $result){
@@ -135,5 +79,61 @@ $pe = $result['buscar'];
      $peli->save();
 
 }
+
+public function mostrarmovies(){
+  $mostrarmovies =Movie::all();
+  return view('movies',compact('mostrarmovies'));
+
+}
+
+
+
+
+  public function detallepelicula($id){
+    $peliculadetalle=Movie::find($id);
+    return view('detallepelicula',compact('peliculadetalle'));
+  }
+
+  public function seleccionarEditar($id){
+    $seleccionarEditar = Movie::find($id);
+    return view('/editarPeliculas',compact('seleccionarEditar'));
+  }
+
+
+
+
+  public function editar(Request $datos){
+    $validacion =[
+      'title'=>'required|min:4',
+      'rating'=>'required|numeric',
+      'awards'=>'required|numeric',
+      'length'=>'required|numeric',
+      'release_date'=>'required|date',
+      'genre_id'=>'required|numeric',
+    ];
+
+  $mesajes =[
+    'required' =>'El campo :atribute es obligatorio',
+        'min' =>'El titulo debe tener como minimo 4 caracteres',
+        'numeric' =>'El campo :atribute debe ser numeric',
+        'date' =>'El campo :atribute debe ser feha',
+
+
+      ];
+
+
+      $this->validate($datos, $validacion);
+    $editarMovies = Movie::find($datos->id);
+
+    $editarMovies->title = $datos['title'];
+    $editarMovies->rating = $datos['rating'];
+    $editarMovies->awards = $datos['awards'];
+    $editarMovies->length = $datos['length'];
+    $editarMovies->release_date = $datos['release_date'];
+    $editarMovies->genre_id = $datos['genre_id'];
+
+    $editarMovies-> save();
+    return redirect('/Peliculas');
+  }
 
 }

@@ -34,3 +34,31 @@ route::get('/agregarpeli', function(){
 route::post('/agregarpeli', 'peliculaController@insertar');
 
 route::post('/buscarpeli', 'peliculaController@buscar');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+route::get('/Peliculas','peliculaController@mostrarmovies' );
+route::get('/detallepelicula1/{id}','peliculaController@detallepelicula');
+
+route::get('/Generos','GenerosController@mostrargenres');
+
+
+
+route::get('/Actores','ActorController@mostraractor');
+route::get('/detalleactor/{id}','ActorController@detalleactor');
+
+
+route::get('/agregarActor', function(){
+  return view('agregarActor');
+});
+
+route::post('/agregarActor','ActorController@agregar');
+
+route::get('/movies/{id}/editarMovies','peliculaovieController@seleccionarEditar');
+
+
+route::post('/movies/{id}/editarMovies','peliculaovieController@editar');
